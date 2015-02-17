@@ -14,6 +14,9 @@ bp_dir=$(cd $(dirname $0); cd ..; pwd)
 # Load some convenience functions like status(), echo(), and indent()
 source $bp_dir/bin/common.sh
 
+# Run subsequent node/npm commands from the build path
+cd $build_dir
+
 # Check and run gulp
 (
   if [ -f $build_dir/gulpfile.js ]; then
@@ -23,8 +26,6 @@ source $bp_dir/bin/common.sh
       export_env_dir $env_dir
     fi
 
-    # Install gulp locally
-    npm install gulp
     status "Found gulpfile, running gulp heroku:$NODE_ENV task"
     $build_dir/node_modules/.bin/gulp heroku:$NODE_ENV
   else
