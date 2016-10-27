@@ -19,7 +19,7 @@ cd $build_dir
 
 # Check and run gulp
 (
-  if [ -f $build_dir/gulpfile.js ]; then
+  if [ -f $build_dir/gulpfile.js ] || [ -f $build_dir/gulpfile.babel.js ]; then
     # get the env vars
     if [ -d "$env_dir" ]; then
       status "Exporting config vars to environment"
